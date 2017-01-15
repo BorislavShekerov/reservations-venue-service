@@ -49,12 +49,21 @@ public class VenueControllerIntegrationTest extends BaseVenueTest {
 	}
 
 	@Test
-	public void getAllVenuesTest() throws Exception {
+	public void getAllVenues() throws Exception {
 		venueDao.save(DUMMY_VENUE_1);
 
 		this.mockMvc.perform(get("/venues/").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
 				.andDo(print()).andExpect(status().isOk()).andExpect(jsonPath("$.[0].id").value(DUMMY_VENUE_1.getId()))
 				.andExpect(jsonPath("$.[0].name").value(DUMMY_VENUE_1.getName()));
+	}
+	
+	@Test
+	public void getAllTablesForVenue() throws Exception {
+		venueDao.save(DUMMY_VENUE_1);
+
+		this.mockMvc.perform(get("/venues/" + DUMMY_VENUE_ID_1 + "/tables").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+				.andDo(print()).andExpect(status().isOk()).andExpect(jsonPath("$.[0].number").value(DUMMY_TABLE_1.getNumber()))
+				.andExpect(jsonPath("$.[0].capacity").value(DUMMY_TABLE_1.getCapacity()));
 	}
 
 	@Test

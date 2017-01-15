@@ -14,8 +14,10 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import com.boris.venues.BaseVenueTest;
+import com.boris.venues.model.Table;
 import com.boris.venues.model.Venue;
 import com.boris.venues.service.VenueService;
+import com.google.common.collect.Lists;
 
 public class VenueControllerTest extends BaseVenueTest {
 
@@ -53,6 +55,18 @@ public class VenueControllerTest extends BaseVenueTest {
 		verify(venueService, Mockito.only()).getVenueForId(DUMMY_VENUE_ID_1);
 
 		assertEquals("The venue returned should be DUMMY_VENUE_1", DUMMY_VENUE_1, result);
+	}
+	
+	@Test
+	public void getTablesForVenue(){
+		when(venueService.getTablesForVenue(DUMMY_VENUE_ID_1)).thenReturn(Lists.newArrayList(DUMMY_TABLE_1));
+
+		List<Table> result = testObj.getTablesForVenue(DUMMY_VENUE_ID_1);
+
+		verify(venueService, Mockito.only()).getTablesForVenue(DUMMY_VENUE_ID_1);
+
+		assertEquals("The table returned should be 1", 1, result.size());
+		assertEquals("The table returned should be 1", DUMMY_TABLE_1, result.get(0));
 	}
 	
 	@Test

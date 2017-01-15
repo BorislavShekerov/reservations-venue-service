@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.boris.venues.dao.VenueDao;
+import com.boris.venues.model.Table;
 import com.boris.venues.model.Venue;
 
 @Service
@@ -28,6 +29,11 @@ public class VenueServiceImpl implements VenueService {
 	@Override
 	public Venue addVenue(Venue venueToAdd) {
 		return venueDao.save(venueToAdd);
+	}
+
+	@Override
+	public List<Table> getTablesForVenue(String venueId) {
+		return venueDao.findOne(venueId).getTables();
 	}
 
 }

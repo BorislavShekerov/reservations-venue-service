@@ -2,6 +2,7 @@ package com.boris.venues.service;
 
 import java.util.List;
 
+import com.boris.venues.model.Table;
 import com.boris.venues.model.Venue;
 
 public interface VenueService {
@@ -11,4 +12,6 @@ public interface VenueService {
 	Venue getVenueForId(String venueId);
 
 	Venue addVenue(Venue venueToAdd);
+
+	List<Table> getTablesForVenue(String dummyVenueId1);
 }
