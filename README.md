@@ -1,0 +1,1 @@
+This Repository stores the venue microservice 
