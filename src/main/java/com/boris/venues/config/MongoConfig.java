@@ -21,6 +21,6 @@ public class MongoConfig extends AbstractMongoConfiguration {
  
     @Override
     protected String getMappingBasePackage() {
-        return "com.boris.reservations.dao";
+        return "com.boris.venues.model";
     }
 }
