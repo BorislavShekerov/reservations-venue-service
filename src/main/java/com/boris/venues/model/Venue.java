@@ -11,11 +11,16 @@ public class Venue {
 	@Id
 	private String id;
 	private String name;
+	private String mainPicUrl;
 	private Location location;
 	private List<Table> tables;
 
 	public String getId() {
 		return id;
+	}
+
+	public String getMainPicUrl() {
+		return mainPicUrl;
 	}
 
 	public String getName() {

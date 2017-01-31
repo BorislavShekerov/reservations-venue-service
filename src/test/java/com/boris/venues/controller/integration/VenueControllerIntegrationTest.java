@@ -91,6 +91,18 @@ public class VenueControllerIntegrationTest extends BaseVenueTest {
 				.accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
 		.andExpect(status().isOk()).andExpect(jsonPath("$.id").isNotEmpty());
 	}
+	
+	@Test
+	public void searchVenues() throws Exception{
+		Venue venueToAdd = new VenueBuilder().withLocation(DUMMY_LOCATION_1).withName(DUMMY_VENUE_NAME_1).withTables(Lists.newArrayList(DUMMY_TABLE_1)).build();
+		
+		venueDao.save(venueToAdd);
+		
+		this.mockMvc
+		.perform(get("/venues/search/" + DUMMY_VENUE_NAME_1.substring(0, 3))
+				.accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+		.andExpect(status().isOk()).andExpect(jsonPath("$.[0].name").value(DUMMY_VENUE_NAME_1));
+	}
 
 	private static String asJsonString(final Object obj) {
 		try {

@@ -43,4 +43,9 @@ public class VenueController {
 		return venueService.getTablesForVenue(venueId);
 	}
 	
+	@GetMapping("/venues/search/{searchStr}")
+	public List<Venue> searchVenues(@PathVariable String searchStr) {
+		return venueService.searchVenues(searchStr);
+	}
+	
 }

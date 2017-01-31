@@ -36,4 +36,9 @@ public class VenueServiceImpl implements VenueService {
 		return venueDao.findOne(venueId).getTables();
 	}
 
+	@Override
+	public List<Venue> searchVenues(String searchStr) {
+		return venueDao.findByNameLike(searchStr);
+	}
+
 }

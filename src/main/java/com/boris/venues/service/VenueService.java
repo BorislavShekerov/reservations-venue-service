@@ -14,4 +14,6 @@ public interface VenueService {
 	Venue addVenue(Venue venueToAdd);
 
 	List<Table> getTablesForVenue(String dummyVenueId1);
+
+	List<Venue> searchVenues(String searchStr);
 }
